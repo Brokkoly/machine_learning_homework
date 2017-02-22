@@ -1,0 +1,13 @@
+%    This lymphography domain was obtained from the University Medical Centre,
+%    Institute of Oncology, Ljubljana, Yugoslavia.  Thanks go to M. Zwitter and
+%    M. Soklic for providing the data.
+@relation lymphography
+@attribute 'flavor' { vanilla, chocolate, strawberry}
+@attribute 'toppings' { sprinkles, chocolate_syrup}
+@attribute 'class' { yum, yuck}
+@data
+vanilla,chocolate_syrup,yum
+chocolate,chocolate_syrup,yuck
+chocolate,chocolate_syrup,yum
+strawberry,sprinkles,yuck
+strawberry,sprinkles,yum
