@@ -1,1 +1,0 @@
-python src/bayes.py $1 $2 $3 $4 
