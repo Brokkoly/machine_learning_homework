@@ -78,7 +78,8 @@ def output_file_t(fileName, results, parents, numCorrect, attributes):
         fileOut.write("\n")
     fileOut.write("\n")
     fileOut.write(str(numCorrect))
-'''
+
+
 def training_data_graph_t(data_range,train_data,test_data,attributes):
     test_size = np.size(test_data,axis = 0)
     nrange = np.arange(1,data_range,5)
@@ -98,7 +99,7 @@ def training_data_graph_t(data_range,train_data,test_data,attributes):
     plt.title("Learning Curve For TAN Algorithm")
     plt.savefig("TAN_Learning_Curve.png")
 
-
+'''
 def training_data_graph_b(data_range,train_data,test_data,attributes):
     test_size = np.size(test_data,axis = 0)
     nrange = np.arange(1,data_range,5)
