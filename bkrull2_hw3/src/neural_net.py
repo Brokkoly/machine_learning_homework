@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import copy
 import pdb
 from sys import argv
-import machine_learning_homework.bkrull2_hw3.src.arff
+import arff
 import random as rand
 import matplotlib.pyplot as plt
 
@@ -30,7 +30,7 @@ def main():
     learning_rate = .1
     num_epochs = 25
     """
-    arff_file = machine_learning_homework.bkrull2_hw3.src.arff.load(open(train_file), 'rb')
+    arff_file = arff.load(open(train_file), 'rb')
     data = arff_file['data']
     #pdb.set_trace()
     data = array(data)
@@ -39,7 +39,9 @@ def main():
     correct = data[:,-1]
     attributes = arff_file['attributes']
 
-
+    num_folds = int(num_folds)
+    learning_rate = float(learning_rate)
+    num_epochs = int(num_epochs)
 
     print_val = get_accuracies(data,attributes,num_epochs,num_folds,learning_rate)
 
