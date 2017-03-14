@@ -26,7 +26,7 @@ def main():
     train_file = "sonar.arff"
     num_folds = 10
     learning_rate = .1
-    num_epochs = 25
+    num_epochs = 10
 
     arff_file = arff.load(open(train_file),'rb')
     data = arff_file['data']
@@ -71,9 +71,14 @@ def main():
                 correct = k[-1]
                 features = k[:-1]
                 sigmoids = netty.propagate(features,correct)
-                results.append((correct,sigmoids[-1]))
+                #results.append((correct,sigmoids[-1]))
                 netty.back_propagate(sigmoids,correct,features)
-
+        print "Training Done"
+        for k in current_test:
+            correct = k[-1]
+            features = k[:-1]
+            sigmoids = netty.propagate(features, correct)
+            results.append((correct,sigmoids[-1]))
         print "Fold %d Done!"%i
 
     print results
@@ -139,6 +144,17 @@ class Net:
     def __init__(self,net_shape,weight_std_dev = .001):
         self.weights = empty(size(net_shape,axis = 0)-1,dtype = matrix)
         #Weights[i] represents the weights between layer i and i+1]
+
+        self.W1 = np.random.normal(0.0,weight_std_dev,net_shape[0]+1)
+        self.W2 = np.random.normal(0.0,weight_std_dev,(net_shape[1]+)
+
+
+
+
+
+
+
+
         self.bias_weights = empty(size(net_shape, axis=0)-1, dtype=matrix)
         self.shape = net_shape
         for i in for_range(net_shape[:-1]):
@@ -152,7 +168,7 @@ class Net:
         #sigmoids = empty((size(self.weights,axis = 0),max(self.shape)),dtype = matrix)
         sigmoids = []
         input_vars = matrix(input_vars)
-        H1 = input_vars*self.weights[0] + self.bias_weights[0]
+        H1 = np.dot(input_vars,self.weights[0]) + self.bias_weights[0]
         sigmoids.append(sigmoid(H1))
         #sigs = np.squeeze(np.asarray(sigmoid(H1)))
         #for i in for_range(sigs):
@@ -160,7 +176,7 @@ class Net:
         #sigmoids[0] = matrix(sigmoid(np.squeeze(np.asarray(H1))))
         for i in for_range(self.weights)[1:]:
             #pdb.set_trace()
-            sigmoids.append(sigmoid(sigmoids[i-1]*self.weights[i]+self.bias_weights[i]))
+            sigmoids.append(sigmoid(np.dot(sigmoids[i-1],self.weights[i])+self.bias_weights[i]))
         return sigmoids
 
     def back_propagate(self,sigmoids,correct,input_vars,learning_rate = .1,b = 1):
@@ -171,7 +187,7 @@ class Net:
         #for layer in arange(size(sigmoids,axis = 0)-1,0,step = -1):
         #TODO make this work for multiple layers
         #Calculation of error of output units
-        delta_out = sigmoids[-1][0]*(1-sigmoids[-1][0])*(correct - sigmoids[-1])
+        delta_out = np.dot(np.dot(sigmoids[-1][0],(1-sigmoids[-1][0])),(correct - sigmoids[-1]))
         #Determine updated weights going to output units
         for i in for_range(sigmoids[-2]):#TODO add support for multiple layers
 
