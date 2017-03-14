@@ -19,7 +19,7 @@ def for_range(input_list, start = 0, mod = 0, axis = 0):
 def main():
 
 
-    """
+
     train_file = argv[1]
     num_folds = argv[2]
     learning_rate = argv[3]
@@ -29,7 +29,7 @@ def main():
     num_folds = 10
     learning_rate = .1
     num_epochs = 25
-
+    """
     arff_file = machine_learning_homework.bkrull2_hw3.src.arff.load(open(train_file), 'rb')
     data = arff_file['data']
     #pdb.set_trace()
