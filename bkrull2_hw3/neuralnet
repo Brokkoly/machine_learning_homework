@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-python ./src/neural_net.py $1 $2 $3 $4
+#python ./src/neural_net.py $1 $2 $3 $4
